@@ -1,7 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using MgChitDotNetCore.ConsoleApp;
-using MgChitDotNetCore.ConsoleApp.Models;
-using MgChitDotNetCore.ConsoleApp.Services;
+
+using MgChitDotNetCore.Model;
+using MgChitDotNetCore.Model.Models;
+using MgChitDotNetCore.Shared;
+using MgChitDotNetCore.Shared.Services;
 
 Console.WriteLine("Hello, World!");
 

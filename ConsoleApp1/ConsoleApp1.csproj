@@ -7,9 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MgChitDotNetCore.Model\MgChitDotNetCore.Model.csproj" />
-    <ProjectReference Include="..\MgChitDotNetCore.Shared\MgChitDotNetCore.Shared.csproj" />
-  </ItemGroup>
-
 </Project>

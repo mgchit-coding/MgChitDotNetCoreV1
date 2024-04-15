@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MgChitDotNetCore.ConsoleApp
+namespace MgChitDotNetCore.Shared
 {
     public static class DevCode
     {
-        public static Dictionary<string,object> ToDictionary<T>(this T obj)
+        public static Dictionary<string, object> ToDictionary<T>(this T obj)
         {
             var keyValue = new Dictionary<string, object>();
             var type = typeof(T);

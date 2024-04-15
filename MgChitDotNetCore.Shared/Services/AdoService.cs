@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
 
-namespace MgChitDotNetCore.ConsoleApp.Services
+namespace MgChitDotNetCore.Shared.Services
 {
     public class AdoService
     {
@@ -16,7 +16,7 @@ namespace MgChitDotNetCore.ConsoleApp.Services
             };
             return connection.ConnectionString;
         }
-        public DataTable Get(string query, Dictionary<string, object>? keyValues = null)
+        private DataTable Get(string query, Dictionary<string, object>? keyValues = null)
         {
             DataTable dt = new DataTable();
             using (var connection = new SqlConnection(GetConnection()))
@@ -33,7 +33,7 @@ namespace MgChitDotNetCore.ConsoleApp.Services
             return dt;
         }
 
-        public int ExecuteQuery(string query, Dictionary<string, object>? keyValues = null)
+        private int ExecuteQuery(string query, Dictionary<string, object>? keyValues = null)
         {
             int result = 0;
             using (var connection = new SqlConnection(GetConnection()))

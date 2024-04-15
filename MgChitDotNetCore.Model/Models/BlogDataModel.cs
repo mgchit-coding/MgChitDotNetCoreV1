@@ -1,4 +1,4 @@
-﻿namespace MgChitDotNetCore.ConsoleApp.Models;
+﻿namespace MgChitDotNetCore.Model.Models;
 
 public class BlogDataModel
 {
