@@ -62,4 +62,4 @@ var delete = service.Execute(SqlQuery.BlogDelete, blogDelete.ToDictionary());
 
 #endregion
 
-Console.ReadLine();
+Console.ReadKey();
