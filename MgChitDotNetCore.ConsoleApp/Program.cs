@@ -7,5 +7,6 @@ Console.WriteLine("Hello, World!");
 Run run = new Run();
 run.Ado();
 run.Dapper();
+run.EFCore();
 
 Console.ReadKey();

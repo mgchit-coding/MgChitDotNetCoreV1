@@ -122,4 +122,56 @@ public class Run
 
         #endregion
     }
+
+    public void EFCore()
+    {
+        AppDbContext db = new AppDbContext();
+
+        #region Get Blog 
+
+        var blogLst = db.Blog.ToList();
+        Console.WriteLine(blogLst.ToJson());
+
+        #endregion
+
+        #region Blog By Id
+
+        int blogId = 10;
+        var blogById = db.Blog.FirstOrDefault(x=> x.BlogId == blogId);
+        Console.WriteLine(blogById.ToJson());
+
+        #endregion
+
+        #region Create Blog 
+
+        var blogModel = new BlogDataModel
+        {
+            BlogTitle = "Title",
+            BlogContent = "content",
+            BlogAuthor = "Author",
+        };
+        db.Blog.Add(blogModel);
+        db.SaveChanges();
+
+        #endregion
+
+        #region Update Blog
+
+        var blog = db.Blog.FirstOrDefault(x => x.BlogId == blogId);
+        blog.BlogAuthor = "Author";
+        blog.BlogContent = "content";
+        blog.BlogTitle = "Titel";
+        db.Blog.Update(blog);
+        db.SaveChanges();
+
+        #endregion
+
+        #region Delete Blog
+
+        var item = db.Blog.FirstOrDefault(x => x.BlogId == blogId);
+        db.Blog.Remove(item);
+        db.SaveChanges();
+
+        #endregion
+    }
 }
