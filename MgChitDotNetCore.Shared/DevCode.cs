@@ -35,5 +35,10 @@ namespace MgChitDotNetCore.Shared
         {
             return JsonConvert.DeserializeObject<List<T>>(str);
         }
+
+        public static string ToFormattedJson(this object obj)
+        {
+            return JsonConvert.SerializeObject(obj,Formatting.Indented);
+        }
     }
 }
