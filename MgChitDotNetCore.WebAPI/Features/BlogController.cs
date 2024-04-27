@@ -31,7 +31,7 @@ namespace MgChitDotNetCore.WebAPI.Features
             var blog = await _context
                 .Blog
                 .AsNoTracking()
-                .FirstOrDefaultAsync(x=> x.BlogId == id);
+                .FirstOrDefaultAsync(x => x.BlogId == id);
             return Ok(blog.ToFormattedJson());
         }
 
@@ -47,6 +47,43 @@ namespace MgChitDotNetCore.WebAPI.Features
             await _context.Blog.AddAsync(model);
             var result = await _context.SaveChangesAsync();
             string message = result > 0 ? "Successfully Create." : "Failed To Create";
+            return Ok(message);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, BlogModel requestModel)
+        {
+            string message = "";
+            var blog = await _context.Blog.FirstOrDefaultAsync(x => x.BlogId == id);
+            if (blog == null)
+            {
+                message = "Data not found.";
+                goto result;
+            }
+            blog.BlogTitle = requestModel.BlogTitle;
+            blog.BlogAuthor = requestModel.BlogAuthor;
+            blog.BlogContent = requestModel.BlogContent;
+            _context.Blog.Update(blog);
+            var result = await _context.SaveChangesAsync();
+            message = result > 0 ? "Successfully Update." : "Failed To Update";
+        result:
+            return Ok(message);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            string message = "";
+            var blog = await _context.Blog.FirstOrDefaultAsync(x => x.BlogId == id);
+            if (blog == null)
+            {
+                message = "Data not found.";
+                goto result;
+            }
+            _context.Blog.Remove(blog);
+            var result = await _context.SaveChangesAsync();
+            message = result > 0 ? "Successfully Delete." : "Failed To Delete";
+        result:
             return Ok(message);
         }
     }
