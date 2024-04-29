@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Web;
+using Effortless.Net.Encryption;
+using Microsoft.IdentityModel.Tokens;
+using MhanoHarkness;
 
 namespace MgChitDotNetCore.Shared
 {
@@ -38,7 +38,86 @@ namespace MgChitDotNetCore.Shared
 
         public static string ToFormattedJson(this object obj)
         {
-            return JsonConvert.SerializeObject(obj,Formatting.Indented);
+            return JsonConvert.SerializeObject(obj, Formatting.Indented);
+        }
+
+        public static string ToUrlObject(this object obj)
+        {
+            string jsonStr = "";
+            if (obj is string)
+            {
+                jsonStr = obj.ToString();
+            }
+            else
+            {
+                jsonStr = obj.ToJson();
+            }
+            string encryptedStr = jsonStr.ToEncrypt();
+            string encodedStr = encryptedStr.ToEncode();
+            return encodedStr;
+        }
+        public static string ToEncode(this string queryString)
+        {
+            return HttpUtility.UrlEncode(queryString);
+        }
+
+        private static byte[] key = "C4162ECDB4594969BB1040E846869706".ToByte();
+        private static byte[] iv1 = "AC507B7DAC7B458CBE781F3916E1F8AB".ToByte();
+        private static byte[] iv = "BE781F3916E1F8AB".ToByte();
+        public static string ToEncrypt(this string str)
+        {
+            string encrypted = Strings.Encrypt(str, key, iv);
+            return encrypted;
+        }
+
+        public static byte[] ToByte(this string str)
+        {
+            return Encoding.UTF8.GetBytes(str);
+        }
+
+        public static T ToUrlObject<T>(this string str, bool IsDecode = true)
+        {
+            string decodedStr = str;
+            if (IsDecode)
+                decodedStr = str.ToDecode();
+            string decryptedStr = decodedStr.ToDecrypt();
+            T obj = decryptedStr.ToObject<T>();
+            return obj;
+        }
+
+        public static string ToDecode(this string queryString)
+        {
+            return HttpUtility.UrlDecode(queryString);
+        }
+
+        public static string ToDecrypt(this string str)
+        {
+            string decrypted = "";
+            try
+            {
+                if (!str.IsNullOrEmpty())
+                {
+                    decrypted = Strings.Decrypt(str, key, iv);
+                }
+            }
+            catch (Exception ex)
+            {
+                decrypted = str;
+            }
+            return decrypted;
+        }
+
+        public static string ToBase3264UrlEncoder(this string str)
+        {
+            byte[] myByteArray = Encoding.ASCII.GetBytes(str);
+            return Convert.ToBase64String(myByteArray);
+        }
+
+        public static string ToBase3264UrlDecoder(this string str)
+        {
+            //byte[] myByteArray = Base32Url.FromBase32String(str);
+            byte[] myByteArray = Convert.FromBase64String(str);
+            return Encoding.UTF8.GetString(myByteArray);
         }
     }
 }

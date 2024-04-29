@@ -86,5 +86,26 @@ namespace MgChitDotNetCore.WebAPI.Features
         result:
             return Ok(message);
         }
+
+        [HttpGet,Route("Encrypt")]
+        public async Task<IActionResult> Encrypt()
+        {
+            var blog = new BlogModel
+            {
+                BlogAuthor = "Author",
+                BlogContent = "content",
+                BlogTitle = "Title",
+            }.ToUrlObject().ToBase3264UrlEncoder();
+
+            return Ok(blog);
+        }
+
+        [HttpGet, Route("Decrypt")]
+        public async Task<IActionResult> Decrypt(string base64Str)
+        {
+            var blog = base64Str.ToBase3264UrlDecoder().ToUrlObject<BlogModel>();
+
+            return Ok(blog);
+        }
     }
 }
