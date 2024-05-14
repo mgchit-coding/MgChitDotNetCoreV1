@@ -19,6 +19,7 @@ namespace MgChitDotNetCore.Shared.Services
                 InitialCatalog = "TestDb",
                 UserID = "sa",
                 Password = "sasa@123",
+                TrustServerCertificate = true
             };
             return connection.ConnectionString;
         }

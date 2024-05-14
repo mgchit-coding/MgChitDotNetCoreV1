@@ -2,6 +2,7 @@
 using MgChitDotNetCore.Model;
 using MgChitDotNetCore.Shared.Services;
 using MgChitDotNetCore.Shared;
+using Newtonsoft.Json;
 
 namespace MgChitDotNetCore.ConsoleApp;
 
@@ -135,23 +136,26 @@ public class Run
         #endregion
 
         #region Blog By Id
-
-        int blogId = 10;
+        var model = new BlogModel();
+        int blogId = 2;
         var blogById = db.Blog.FirstOrDefault(x=> x.BlogId == blogId);
+        model.DynamicObj = blogById;
+        Console.WriteLine(model.DynamicObj.ToJson());
+        Console.WriteLine(JsonConvert.SerializeObject(model.DynamicObj));
         Console.WriteLine(blogById.ToJson());
 
         #endregion
 
         #region Create Blog 
 
-        var blogModel = new BlogDataModel
-        {
-            BlogTitle = "Title",
-            BlogContent = "content",
-            BlogAuthor = "Author",
-        };
-        db.Blog.Add(blogModel);
-        db.SaveChanges();
+        //var blogModel = new BlogDataModel
+        //{
+        //    BlogTitle = "Title",
+        //    BlogContent = "content",
+        //    BlogAuthor = "Author",
+        //};
+        //db.Blog.Add(blogModel);
+        //db.SaveChanges();
 
         #endregion
 
@@ -162,16 +166,24 @@ public class Run
         blog.BlogContent = "content";
         blog.BlogTitle = "Titel";
         db.Blog.Update(blog);
+
+        blog.BlogTitle = "Titel1";
+        db.Blog.Update(blog);
         db.SaveChanges();
 
         #endregion
 
         #region Delete Blog
 
-        var item = db.Blog.FirstOrDefault(x => x.BlogId == blogId);
-        db.Blog.Remove(item);
-        db.SaveChanges();
+        //var item = db.Blog.FirstOrDefault(x => x.BlogId == blogId);
+        //db.Blog.Remove(item);
+        //db.SaveChanges();
 
         #endregion
+    }
+
+    public void HttpClient()
+    {
+        HttpClientService _httpClient = new HttpClientService();
     }
 }

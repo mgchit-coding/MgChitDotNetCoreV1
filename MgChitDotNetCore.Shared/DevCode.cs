@@ -3,7 +3,6 @@ using System.Text;
 using System.Web;
 using Effortless.Net.Encryption;
 using Microsoft.IdentityModel.Tokens;
-using MhanoHarkness;
 
 namespace MgChitDotNetCore.Shared
 {
@@ -21,7 +20,7 @@ namespace MgChitDotNetCore.Shared
             return keyValue;
         }
 
-        public static string ToJson(this object obj)
+        public static string ToJson<T>(this T obj)
         {
             return JsonConvert.SerializeObject(obj);
         }
