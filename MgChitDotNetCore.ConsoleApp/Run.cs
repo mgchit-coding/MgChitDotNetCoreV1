@@ -184,6 +184,7 @@ public class Run
     public async void HttpClient()
     {
         HttpClientService _httpClient = new HttpClientService();
+
         #region Get Blog
         
         var blogs = await _httpClient.Execute<List<BlogDataModel>>("api/blog",EnumHttpMethod.GET);
@@ -226,6 +227,57 @@ public class Run
 
         var deleteResult = await _httpClient.Execute<BlogResponseModel>($"api/blog/{3}", EnumHttpMethod.DELETE);
         Console.WriteLine(deleteResult.Message);
+
+        #endregion
+    }
+
+    public async void RestClient()
+    {
+        RestClientService _restClient = new RestClientService();
+
+        #region Get Blog
+
+        var blogs = await _restClient.Execute<List<BlogDataModel>>("api/blog", EnumHttpMethod.GET);
+        Console.WriteLine(blogs.ToJson(true));
+
+        #endregion
+
+        #region Get Blog By Id 
+
+        var blog = await _restClient.Execute<BlogDataModel>($"api/blog/{2}", EnumHttpMethod.GET);
+        Console.WriteLine(blog.ToJson(true));
+
+        #endregion
+
+        #region Create Blog 
+
+        var model = new BlogDataModel
+        {
+            BlogTitle = "BlogTitle",
+            BlogAuthor = "BlogAuthor",
+            BlogContent = "BlogContent",
+        };
+        var result = await _restClient.Execute<BlogResponseModel>($"api/blog", EnumHttpMethod.POST, model);
+        Console.WriteLine(result.Message);
+        #endregion
+
+        #region Update Blog 
+
+        var updateModel = new BlogDataModel
+        {
+            BlogTitle = "BlogTitle",
+            BlogAuthor = "BlogAuthor",
+            BlogContent = "BlogContent",
+        };
+        var updateResult = await _restClient.Execute<BlogResponseModel>($"api/blog/{2}", EnumHttpMethod.PUT, updateModel);
+        Console.WriteLine(updateResult.Message);
+        #endregion
+
+        #region Delete Blog 
+
+        var deleteResult = await _restClient.Execute<BlogResponseModel>($"api/blog/{3}", EnumHttpMethod.DELETE);
+        Console.WriteLine(deleteResult.Message);
+
         #endregion
     }
 }
