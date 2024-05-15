@@ -20,9 +20,10 @@ namespace MgChitDotNetCore.Shared
             return keyValue;
         }
 
-        public static string ToJson<T>(this T obj)
+        public static string ToJson<T>(this T obj,bool isFormat = false)
         {
-            return JsonConvert.SerializeObject(obj);
+            return isFormat ? JsonConvert.SerializeObject(obj) : 
+                JsonConvert.SerializeObject(obj,Formatting.Indented);
         }
 
         public static T ToObject<T>(this string str)

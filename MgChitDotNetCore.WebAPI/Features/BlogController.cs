@@ -47,17 +47,23 @@ namespace MgChitDotNetCore.WebAPI.Features
             await _context.Blog.AddAsync(model);
             var result = await _context.SaveChangesAsync();
             string message = result > 0 ? "Successfully Create." : "Failed To Create";
-            return Ok(message);
+            var response = new BlogResponseModel
+            {
+                Message = message
+            };
+            return Ok(response);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, BlogModel requestModel)
         {
+            var response = new BlogResponseModel();
             string message = "";
             var blog = await _context.Blog.FirstOrDefaultAsync(x => x.BlogId == id);
             if (blog == null)
             {
                 message = "Data not found.";
+                response.Message = message;
                 goto result;
             }
             blog.BlogTitle = requestModel.BlogTitle;
@@ -66,28 +72,32 @@ namespace MgChitDotNetCore.WebAPI.Features
             _context.Blog.Update(blog);
             var result = await _context.SaveChangesAsync();
             message = result > 0 ? "Successfully Update." : "Failed To Update";
+            response.Message = message;
         result:
-            return Ok(message);
+            return Ok(response);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
+            var response = new BlogResponseModel();
             string message = "";
             var blog = await _context.Blog.FirstOrDefaultAsync(x => x.BlogId == id);
             if (blog == null)
             {
                 message = "Data not found.";
+                response.Message = message;
                 goto result;
             }
             _context.Blog.Remove(blog);
             var result = await _context.SaveChangesAsync();
             message = result > 0 ? "Successfully Delete." : "Failed To Delete";
+            response.Message = message;
         result:
-            return Ok(message);
+            return Ok(response);
         }
 
-        [HttpGet,Route("Encrypt")]
+        [HttpGet, Route("Encrypt")]
         public async Task<IActionResult> Encrypt()
         {
             var blog = new BlogModel

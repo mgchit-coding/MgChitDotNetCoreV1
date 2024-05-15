@@ -140,7 +140,6 @@ public class Run
         int blogId = 2;
         var blogById = db.Blog.FirstOrDefault(x=> x.BlogId == blogId);
         model.DynamicObj = blogById;
-        Console.WriteLine(model.DynamicObj.ToJson());
         Console.WriteLine(JsonConvert.SerializeObject(model.DynamicObj));
         Console.WriteLine(blogById.ToJson());
 
@@ -182,8 +181,51 @@ public class Run
         #endregion
     }
 
-    public void HttpClient()
+    public async void HttpClient()
     {
         HttpClientService _httpClient = new HttpClientService();
+        #region Get Blog
+        
+        var blogs = await _httpClient.Execute<List<BlogDataModel>>("api/blog",EnumHttpMethod.GET);
+        Console.WriteLine(blogs.ToJson(true));
+
+        #endregion
+
+        #region Get Blog By Id 
+
+        var blog = await _httpClient.Execute<BlogDataModel>($"api/blog/{2}", EnumHttpMethod.GET);
+        Console.WriteLine(blog.ToJson(true));
+
+        #endregion
+
+        #region Create Blog 
+
+        var model = new BlogDataModel
+        {
+            BlogTitle = "BlogTitle",
+            BlogAuthor = "BlogAuthor",
+            BlogContent = "BlogContent",
+        };
+        var result = await _httpClient.Execute<BlogResponseModel>($"api/blog", EnumHttpMethod.POST,model);
+        Console.WriteLine(result.Message);
+        #endregion
+
+        #region update Blog 
+
+        var updateModel = new BlogDataModel
+        {
+            BlogTitle = "BlogTitle",
+            BlogAuthor = "BlogAuthor",
+            BlogContent = "BlogContent",
+        };
+        var updateResult = await _httpClient.Execute<BlogResponseModel>($"api/blog/{2}", EnumHttpMethod.PUT, updateModel);
+        Console.WriteLine(updateResult.Message);
+        #endregion
+
+        #region delete Blog 
+
+        var deleteResult = await _httpClient.Execute<BlogResponseModel>($"api/blog/{3}", EnumHttpMethod.DELETE);
+        Console.WriteLine(deleteResult.Message);
+        #endregion
     }
 }

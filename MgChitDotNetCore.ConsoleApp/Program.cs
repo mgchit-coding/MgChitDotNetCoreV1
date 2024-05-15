@@ -8,6 +8,7 @@ Run run = new Run();
 //run.Ado();
 //run.Dapper();
 //run.EFCore();
+run.HttpClient();
 
 
 Console.ReadKey();
