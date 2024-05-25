@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MgChitDotNetCore.ConsoleApp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MgChitDotNetCore.WebAPI", "MgChitDotNetCore.WebAPI\MgChitDotNetCore.WebAPI.csproj", "{C432A113-F765-44B8-8F99-D42522F8EA88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MgChitDotNetCore.WindowForm", "MgChitDotNetCore.WindowForm\MgChitDotNetCore.WindowForm.csproj", "{5130BDBF-8FBC-4097-8836-C8363DD45E95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MgChitDotNetCore.WindowForm", "MgChitDotNetCore.WindowForm\MgChitDotNetCore.WindowForm.csproj", "{5130BDBF-8FBC-4097-8836-C8363DD45E95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MgChitDotNetCore.PizzaApi", "MgChitDotNetCore.PizzaApi\MgChitDotNetCore.PizzaApi.csproj", "{BCE89D90-372D-4491-89CC-0780127AEEE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MgChitDotNetCore.RestApiWithNLayer", "MgChitDotNetCore.RestApiWithNLayer\MgChitDotNetCore.RestApiWithNLayer.csproj", "{403BE8B1-15B7-4BE1-8DD1-03A488C5DEA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{5130BDBF-8FBC-4097-8836-C8363DD45E95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5130BDBF-8FBC-4097-8836-C8363DD45E95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5130BDBF-8FBC-4097-8836-C8363DD45E95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCE89D90-372D-4491-89CC-0780127AEEE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCE89D90-372D-4491-89CC-0780127AEEE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCE89D90-372D-4491-89CC-0780127AEEE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCE89D90-372D-4491-89CC-0780127AEEE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{403BE8B1-15B7-4BE1-8DD1-03A488C5DEA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{403BE8B1-15B7-4BE1-8DD1-03A488C5DEA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{403BE8B1-15B7-4BE1-8DD1-03A488C5DEA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{403BE8B1-15B7-4BE1-8DD1-03A488C5DEA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

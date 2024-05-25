@@ -1,0 +1,6 @@
+@MgChitDotNetCore.RestApiWithNLayer_HostAddress = http://localhost:5199
+
+GET {{MgChitDotNetCore.RestApiWithNLayer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
