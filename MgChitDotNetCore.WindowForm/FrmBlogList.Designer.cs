@@ -53,6 +53,7 @@
             // 
             // colID
             // 
+            colID.DataPropertyName = "ID";
             colID.HeaderText = "ID";
             colID.MinimumWidth = 8;
             colID.Name = "colID";
@@ -60,6 +61,7 @@
             // 
             // colTitle
             // 
+            colTitle.DataPropertyName = "Title";
             colTitle.HeaderText = "Title";
             colTitle.MinimumWidth = 8;
             colTitle.Name = "colTitle";
@@ -67,6 +69,7 @@
             // 
             // colAuthor
             // 
+            colAuthor.DataPropertyName = "Author";
             colAuthor.HeaderText = "Author";
             colAuthor.MinimumWidth = 8;
             colAuthor.Name = "colAuthor";
@@ -74,6 +77,7 @@
             // 
             // colContent
             // 
+            colContent.DataPropertyName = "Content";
             colContent.HeaderText = "Content";
             colContent.MinimumWidth = 8;
             colContent.Name = "colContent";

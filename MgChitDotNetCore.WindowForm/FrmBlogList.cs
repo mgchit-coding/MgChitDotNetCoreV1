@@ -28,7 +28,7 @@ namespace MgChitDotNetCore.WindowForm
             var blog = _context.Blog.ToList();
             dgvData.DataSource = blog.Select(x=> new BlogViewModel
             {
-                Id = x.BlogId,
+                ID = x.BlogId,
                 Title = x.BlogTitle,
                 Author = x.BlogAuthor,
                 Content = x.BlogContent,
