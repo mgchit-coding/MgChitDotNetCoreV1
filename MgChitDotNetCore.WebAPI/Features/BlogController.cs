@@ -21,8 +21,13 @@ namespace MgChitDotNetCore.WebAPI.Features
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var blogs = await _context.Blog.AsNoTracking().ToListAsync();
-            return Ok(blogs.ToFormattedJson());
+            //var blogs = await _context.Blog.AsNoTracking().ToListAsync();
+            var blogs = _context.Blog.AsNoTracking().Where(x => x.BlogAuthor.Contains("BlogTitle"));
+            blogs = blogs.Where(x => x.BlogContent.Contains("Content"));
+            var query = blogs.ToQueryString();
+            Console.WriteLine(query);
+            var lst = await blogs.ToListAsync();
+            return Ok(lst.ToFormattedJson());
         }
 
         [HttpGet("{id}")]

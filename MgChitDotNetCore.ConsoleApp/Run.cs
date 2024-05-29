@@ -161,15 +161,15 @@ public class Run
 
         #region Update Blog
 
-        var blog = db.Blog.FirstOrDefault(x => x.BlogId == blogId);
-        blog.BlogAuthor = "Author";
-        blog.BlogContent = "content";
-        blog.BlogTitle = "Titel";
-        db.Blog.Update(blog);
+        //var blog = db.Blog.FirstOrDefault(x => x.BlogId == blogId);
+        //blog.BlogAuthor = "Author";
+        //blog.BlogContent = "content";
+        //blog.BlogTitle = "Titel";
+        //db.Blog.Update(blog);
 
-        blog.BlogTitle = "Titel1";
-        db.Blog.Update(blog);
-        db.SaveChanges();
+        //blog.BlogTitle = "Titel1";
+        //db.Blog.Update(blog);
+        //db.SaveChanges();
 
         #endregion
 

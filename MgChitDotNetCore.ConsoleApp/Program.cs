@@ -7,9 +7,9 @@ Console.WriteLine("Hello, World!");
 Run run = new Run();
 //run.Ado();
 //run.Dapper();
-//run.EFCore();
+run.EFCore();
 //run.HttpClient();
-run.Refit();
+//run.Refit();
 
 
 Console.ReadKey();
