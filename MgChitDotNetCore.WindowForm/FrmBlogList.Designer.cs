@@ -30,6 +30,8 @@
         {
             dgvData = new DataGridView();
             colID = new DataGridViewTextBoxColumn();
+            colEdit = new DataGridViewTextBoxColumn();
+            colDelete = new DataGridViewTextBoxColumn();
             colTitle = new DataGridViewTextBoxColumn();
             colAuthor = new DataGridViewTextBoxColumn();
             colContent = new DataGridViewTextBoxColumn();
@@ -42,7 +44,7 @@
             dgvData.AllowUserToDeleteRows = false;
             dgvData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvData.Columns.AddRange(new DataGridViewColumn[] { colID, colTitle, colAuthor, colContent });
+            dgvData.Columns.AddRange(new DataGridViewColumn[] { colID, colEdit, colDelete, colTitle, colAuthor, colContent });
             dgvData.Dock = DockStyle.Fill;
             dgvData.Location = new Point(0, 0);
             dgvData.Name = "dgvData";
@@ -58,6 +60,20 @@
             colID.MinimumWidth = 8;
             colID.Name = "colID";
             colID.ReadOnly = true;
+            // 
+            // colEdit
+            // 
+            colEdit.HeaderText = "Edit";
+            colEdit.MinimumWidth = 8;
+            colEdit.Name = "colEdit";
+            colEdit.ReadOnly = true;
+            // 
+            // colDelete
+            // 
+            colDelete.HeaderText = "Delete";
+            colDelete.MinimumWidth = 8;
+            colDelete.Name = "colDelete";
+            colDelete.ReadOnly = true;
             // 
             // colTitle
             // 
@@ -100,6 +116,8 @@
 
         private DataGridView dgvData;
         private DataGridViewTextBoxColumn colID;
+        private DataGridViewTextBoxColumn colEdit;
+        private DataGridViewTextBoxColumn colDelete;
         private DataGridViewTextBoxColumn colTitle;
         private DataGridViewTextBoxColumn colAuthor;
         private DataGridViewTextBoxColumn colContent;
