@@ -28,5 +28,6 @@ namespace MgChitDotNetCore.Shared.Services
             optionsBuilder.UseSqlServer(GetConnection());
         }
         public DbSet<BlogDataModel> Blog { get; set; }
+
     }
 }

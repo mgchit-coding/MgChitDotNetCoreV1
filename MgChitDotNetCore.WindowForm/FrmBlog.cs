@@ -11,7 +11,17 @@ namespace MgChitDotNetCore.WindowForm
             InitializeComponent();
             _db = new AppDbContext();
         }
-
+        public FrmBlog(int id)
+        {
+            InitializeComponent();
+            _db = new AppDbContext();
+            var blog = _db.Blog.FirstOrDefault(x => x.BlogId == id);
+            txtAuthor.Text = blog.BlogAuthor;
+            txtContent.Text = blog.BlogContent;
+            txtTitle.Text = blog.BlogTitle;
+            btnSave.Visible = false;
+            btnUpdate.Visible = true;
+        }
         private void btnCancel_Click(object sender, EventArgs e)
         {
             ClearControls();
@@ -41,6 +51,24 @@ namespace MgChitDotNetCore.WindowForm
             MessageBox.Show(message, "Blog", MessageBoxButtons.OK, messageBoxIcon);
             if (result > 0)
                 ClearControls();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            var model = new BlogDataModel
+            {
+                BlogAuthor = txtAuthor.Text,
+                BlogContent = txtContent.Text,
+                BlogTitle = txtTitle.Text,
+            };
+            _db.Blog.Update(model);
+            var result = _db.SaveChanges();
+            string message = result > 0 ? "Update Successful." : "Update Failed.";
+            var messageBoxIcon = result > 0 ? MessageBoxIcon.Information : MessageBoxIcon.Error;
+            MessageBox.Show(message, "Blog", MessageBoxButtons.OK, messageBoxIcon);
+            if (result > 0)
+                ClearControls();
+            this.Close();
         }
     }
 }

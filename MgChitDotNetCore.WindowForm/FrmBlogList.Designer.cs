@@ -30,8 +30,8 @@
         {
             dgvData = new DataGridView();
             colID = new DataGridViewTextBoxColumn();
-            colEdit = new DataGridViewTextBoxColumn();
-            colDelete = new DataGridViewTextBoxColumn();
+            colEdit = new DataGridViewButtonColumn();
+            colDelete = new DataGridViewButtonColumn();
             colTitle = new DataGridViewTextBoxColumn();
             colAuthor = new DataGridViewTextBoxColumn();
             colContent = new DataGridViewTextBoxColumn();
@@ -52,6 +52,7 @@
             dgvData.RowHeadersWidth = 62;
             dgvData.Size = new Size(800, 450);
             dgvData.TabIndex = 0;
+            dgvData.CellContentClick += dgvData_CellContentClick;
             // 
             // colID
             // 
@@ -63,17 +64,23 @@
             // 
             // colEdit
             // 
+            colEdit.DataPropertyName = "Edit";
             colEdit.HeaderText = "Edit";
             colEdit.MinimumWidth = 8;
             colEdit.Name = "colEdit";
             colEdit.ReadOnly = true;
+            colEdit.Text = "Edit";
+            colEdit.UseColumnTextForButtonValue = true;
             // 
             // colDelete
             // 
+            colDelete.DataPropertyName = "Delete";
             colDelete.HeaderText = "Delete";
             colDelete.MinimumWidth = 8;
             colDelete.Name = "colDelete";
             colDelete.ReadOnly = true;
+            colDelete.Text = "Delete";
+            colDelete.UseColumnTextForButtonValue = true;
             // 
             // colTitle
             // 
@@ -116,8 +123,8 @@
 
         private DataGridView dgvData;
         private DataGridViewTextBoxColumn colID;
-        private DataGridViewTextBoxColumn colEdit;
-        private DataGridViewTextBoxColumn colDelete;
+        private DataGridViewButtonColumn colEdit;
+        private DataGridViewButtonColumn colDelete;
         private DataGridViewTextBoxColumn colTitle;
         private DataGridViewTextBoxColumn colAuthor;
         private DataGridViewTextBoxColumn colContent;
